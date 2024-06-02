@@ -7,31 +7,23 @@ const URL = "https://api.openweathermap.org/data/2.5/weather";
 function App() {
   const [cityName, setCityName] = useState("");
   const [weatherData, setWeatherData] = useState(null);
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const hasError = error.length > 0;
+  const [error, setError] = useState(""); // Estado para el mensaje de error
 
   const getWeather = async (city) => {
     setIsLoading(true);
-    setError("");
+    setError(""); // Reiniciar el mensaje de error antes de hacer la solicitud
     try {
-      const response = await axios.get(URL, {
-        params: {
-          q: city.trim(),
-          units: "metric",
-          appid: API_KEY,
-          lang: "es",
-        },
-      });
-
-      setWeatherData(response.data);
-    } catch (err) {
-      if (err?.response?.status === 404) {
-        setError("No se encontró la ciudad ingresada");
-      } else {
-        setError("No se pudo obtener la información del clima");
+      const response = await fetch(
+        `${URL}?q=${city.trim()}&units=metric&appid=${API_KEY}&lang=es`
+      );
+      if (!response.ok) {
+        throw new Error("Error al buscar ciudad");
       }
+      const data = await response.json();
+      setWeatherData(data);
+    } catch (error) {
+      setError(error.message); // Capturar el error y actualizar el estado del mensaje de error
     } finally {
       setIsLoading(false);
     }
@@ -54,15 +46,14 @@ function App() {
             placeholder="Buscar ciudad"
             aria-label="Search"
             aria-describedby="search-helper"
-            aria-invalid={hasError}
             required
           />
         </form>
       </div>
       <main>
         {isLoading && <Loader />}
-        {weatherData && !hasError && <Card data={weatherData} />}
-        {hasError && <ErrorMessage error={error} />}
+        {error && <ErrorMessage error={error} />} {/* Mostrar mensaje de error si hay un error */}
+        {weatherData && !error && <Card data={weatherData} />}
       </main>
     </div>
   );
@@ -81,12 +72,6 @@ const Navbar = ({ getWeather }) => (
       ))}
     </ul>
   </nav>
-);
-
-const ErrorMessage = ({ error }) => (
-  <small className="error" id="search-helper">
-    <b>{error}</b>
-  </small>
 );
 
 const Loader = () => <article aria-busy={true}></article>;
@@ -111,4 +96,10 @@ const Card = ({ data }) => (
       <p>Humedad: {data.main.humidity}%</p>
     </footer>
   </article>
+);
+
+const ErrorMessage = ({ error }) => (
+  <div className="error-message" role="alert">
+    {error}
+  </div>
 );

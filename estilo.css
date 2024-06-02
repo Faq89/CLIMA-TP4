@@ -1,9 +1,8 @@
-*{
-    background-color:#ccc ;
+* {
+    background-color: #ccc;
 }
 
 body {
-    
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -14,23 +13,13 @@ body {
     padding: 10px;
 }
 
-.search-container.error input[type="search"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: transparent;
-
-  }
-  
-
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     background-color: #ccc;
-    padding: 10px;
+    padding: 5px 10px; /* Reduce el padding en la barra de navegación */
 }
 
 nav h1 {
@@ -61,8 +50,7 @@ nav ul li a:hover {
 .search-container {
     display: flex;
     justify-content: center;
-    padding: 10px 0;
-   
+    padding: 5px 0; /* Reduce el padding en la barra de búsqueda */
 }
 
 .search-container form {
@@ -70,7 +58,6 @@ nav ul li a:hover {
     flex-direction: column;
     width: 100%;
     background-color: #fff;
-    
 }
 
 .search-container input[type="search"] {
@@ -79,23 +66,17 @@ nav ul li a:hover {
     border-radius: 5px;
     font-size: 1rem;
     background-color: transparent;
-    
-    
-}
-
-.error {
-    color: red;
-    margin-top: 10px;
+    padding-left: 3rem;
 }
 
 .card {
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: left;
-    margin-top: 20px;
+    
 }
 
-.card header{
+.card header {
     background-color: #ffffff;
 }
 
@@ -105,10 +86,11 @@ nav ul li a:hover {
     font-size: 1.5rem;
     text-align: left;
 }
-.imgCont{
+
+.imgCont {
     padding: 3%;
     background-color: #a1d7d7;
-    border-radius: 5%;
+    border-radius: 2%;
 }
 
 .card img {
@@ -119,7 +101,6 @@ nav ul li a:hover {
 
 .card footer {
     background-color: #ffffff;
-    
     margin-top: 20px;
 }
 
@@ -133,6 +114,14 @@ nav ul li a:hover {
     background-color: #ffffff;
     margin: 5px 0;
 }
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
 
 @media (max-width: 600px) {
     nav {
