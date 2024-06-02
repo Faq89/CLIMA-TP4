@@ -14,7 +14,6 @@ function App() {
 
   const getWeather = async (city) => {
     setIsLoading(true);
-    setWeatherData(null);
     setError("");
     try {
       const response = await axios.get(URL, {
@@ -29,9 +28,9 @@ function App() {
       setWeatherData(response.data);
     } catch (err) {
       if (err?.response?.status === 404) {
-        setError("Ciudad no encontrada");
+        setError("No se encontró la ciudad ingresada");
       } else {
-        setError("Error al obtener los datos del clima");
+        setError("No se pudo obtener la información del clima");
       }
     } finally {
       setIsLoading(false);
@@ -58,12 +57,12 @@ function App() {
             aria-invalid={hasError}
             required
           />
-          {hasError && <ErrorMessage error={error} />}
         </form>
       </div>
       <main>
         {isLoading && <Loader />}
         {weatherData && !hasError && <Card data={weatherData} />}
+        {hasError && <ErrorMessage error={error} />}
       </main>
     </div>
   );
@@ -98,11 +97,12 @@ const Card = ({ data }) => (
       <h2>{data.name}</h2>
     </header>
 
-    <img
-      src={`./openweathermap/${data.weather[0].icon}.svg`}
-      alt={data.weather[0].description}
-    />
-
+    <div className="imgCont">
+      <img
+        src={`./openweathermap/${data.weather[0].icon}.svg`}
+        alt={data.weather[0].description}
+      />
+    </div>
     <footer>
       <h3>Temperatura: {data.main.temp}°C</h3>
       <p>
@@ -112,4 +112,3 @@ const Card = ({ data }) => (
     </footer>
   </article>
 );
-
