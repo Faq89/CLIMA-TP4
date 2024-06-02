@@ -85,16 +85,18 @@ nav ul li a:hover {
     text-align: left;
 }
 
-.imgCont {
+.imgCard {
     padding: 3%;
     background-color: #b7dfe8;
     border-radius: 2%;
+    margin-bottom: 20px;
 }
 
 .card img {
     background-color: #b7dfe8;
     max-width: 100%;
     height: auto;
+    
 }
 
 .card footer {
@@ -104,13 +106,13 @@ nav ul li a:hover {
 
 .card footer h3 {
     background-color: #ffffff;
-    margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.50rem;
+    margin-bottom: 20px;
 }
 
 .card footer p {
     background-color: #ffffff;
-    margin: 5px 0;
+    margin: 5px 0 20px;
 }
 
 .error-message {
