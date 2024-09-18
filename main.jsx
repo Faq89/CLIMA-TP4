@@ -1,6 +1,6 @@
 const { useState, useEffect } = React;
 
-const ApiKey = "1586248c3937369faa3442ed8f947769";
+const ApiKey = "TuApiKey";
 
 const DefaultCity = ["Tucumán", "Salta", "Buenos Aires"];
 
